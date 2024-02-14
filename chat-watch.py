@@ -22,13 +22,11 @@ engine = pyttsx3.init("dummy")
 voice = engine.getProperty('voices')[1]
 engine.setProperty('voice', voice.id)
 name = "Emiralp"
-greetings = [f"whats up master {name}",
-             "yeah?",
-             "Well, hello there, Master of Puns and Jokes - how's it going today?",
-             f"Ahoy there, Captain {name}! How's the ship sailing?",
-             f"Bonjour, Monsieur {name}! Comment ça va? Wait, why the hell am I speaking French?" ]
+greetings = [f"Merhaba {name}",
+             "Nasılsın?",
+             "Ben Chat Watch. Bugün iyisin umarım, keyifler yerinde mi?"]
 def listen_for_wake_word(source):
-    print("Listening for 'Hey'...")
+    print("Dinliyorum 'Hey'...")
 
     while True:
         audio = r.listen(source)
@@ -44,12 +42,12 @@ def listen_for_wake_word(source):
             pass
 # Listen for input and respond with OpenAI API
 def listen_and_respond(source):
-    print("Listening...")
+    print("Dinliyorum...")
     while True:
         audio = r.listen(source)
         try:
             text = r.recognize_google(audio)
-            print(f"You said: {text}")
+            print(f"Bunu soyledin: {text}")
             if not text:
                 continue
             # Send input to OpenAI API
@@ -58,9 +56,9 @@ def listen_and_respond(source):
             print(response_text)
             print("generating audio")
             myobj = gTTS(text = response_text, lang = language, slow = False)
-            myobj.save("response.mp3")
+            myobj.save("cevap.mp3")
             print("speaking")
-            os.system("vlc response.mp3")
+            os.system("vlc cevap.mp3")
             # Speak the response
             print("speaking")
             engine.say(response_text)
@@ -69,12 +67,12 @@ def listen_and_respond(source):
                 listen_for_wake_word(source)
         except sr.UnknownValueError:
             time.sleep(2)
-            print("Silence found, shutting up, listening...")
+            print("Kimse konusmuyor, uykuya daliyorum...")
             listen_for_wake_word(source)
             break
         except sr.RequestError as e:
-            print(f"Could not request results; {e}")
-            engine.say(f"Could not request results; {e}")
+            print(f"Istek bulunamadi; {e}")
+            engine.say(f"Istek bulunamadi; {e}")
             engine.runAndWait()
             listen_for_wake_word(source)
             break
