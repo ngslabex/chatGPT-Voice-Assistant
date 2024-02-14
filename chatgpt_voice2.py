@@ -7,8 +7,8 @@ import pyttsx3
 import numpy as np
 from gtts import gTTS
 
-mytext = 'Welcome to me'
-language = 'en'
+mytext = 'Hosgeldiniz'
+language = 'tr'
 # from os.path import join, dirname
 # import matplotlib.pyplot as plt
 # ^ matplotlib is great for visualising data and for testing purposes but usually not needed for production
@@ -21,7 +21,7 @@ r = sr.Recognizer()
 engine = pyttsx3.init("dummy")
 voice = engine.getProperty('voices')[1]
 engine.setProperty('voice', voice.id)
-name = "YOUR NAME HERE"
+name = "Emiralp"
 greetings = [f"whats up master {name}",
              "yeah?",
              "Well, hello there, Master of Puns and Jokes - how's it going today?",
