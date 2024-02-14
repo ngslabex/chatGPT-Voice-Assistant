@@ -23,7 +23,7 @@ voice = engine.getProperty('voices')[1]
 engine.setProperty('voice', voice.id)
 name = "Emiralp"
 greetings = [f"Merhaba {name}",
-             "Nasılsın?",
+             "Nasilsin?",
              "Ben Chat Watch. Bugün iyisin umarım, keyifler yerinde mi?"]
 def listen_for_wake_word(source):
     print("Dinliyorum 'Hey'...")
@@ -51,7 +51,7 @@ def listen_and_respond(source):
             if not text:
                 continue
             # Send input to OpenAI API
-            response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": f"{text}"}])
+            response = openai.ChatCompletion.create(model="gpt-4", messages=[{"role": "user", "content": f"{text}"}])
             response_text = response.choices[0].message.content
             print(response_text)
             print("generating audio")
